@@ -1,22 +1,19 @@
 const express = require('express');
+const logger = require('./config/logger.config.js');
 const app = express();
 require('dotenv').config();
-const sqlConnection = require('./config/db.config.js');
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    sqlConnection.query('SELECT * FROM user_roles', (error, rows, field) => {
-        console.log(rows);
-        return res.send(rows);
-    });
-});
+const userRoleRoutes = require('./rest/routes/userRole.router.js');
+
+app.use('/user/roles', userRoleRoutes);
 
 const port = process.env.PORT;
 app.listen(port, (error) => {
     if (error) {
-        console.log(error);
+        logger.error(error);
     } else {
-        console.log(`Server is running on port - ${port}`);
+        logger.info(`Server is running on port - ${port}`);
     }
 })
