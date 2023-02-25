@@ -1,18 +1,19 @@
 const express = require('express');
+const logger = require('./config/logger.config.js');
 const app = express();
 require('dotenv').config();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    return res.send('Hello!');
-});
+const userRoleRoutes = require('./rest/routes/userRole.router.js');
+
+app.use('/user/roles', userRoleRoutes);
 
 const port = process.env.PORT;
 app.listen(port, (error) => {
     if (error) {
-        console.log(error);
+        logger.error(error);
     } else {
-        console.log(`Server is running on port - ${port}`);
+        logger.info(`Server is running on port - ${port}`);
     }
 })
