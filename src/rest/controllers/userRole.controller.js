@@ -1,5 +1,5 @@
 const logger = require('../../config/logger.config.js');
-const userRoleDb = require('../../dbHelper/userRole.dbHelper.js');
+const userRoleDb = require('../dbHelper/userRole.dbHelper.js');
 
 module.exports = {
     getAllUserRoles: async (req, res, next) => {

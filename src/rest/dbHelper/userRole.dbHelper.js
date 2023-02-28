@@ -1,6 +1,6 @@
-const connection = require('../config/db.config.js');
-const logger = require('../config/logger.config.js');
-const queryConstant = require('../constants/query.constant.js');
+const connection = require('../../config/db.config.js');
+const logger = require('../../config/logger.config.js');
+const queryConstant = require('../../constants/query.constant.js');
 
 module.exports = {
     getAllUserRoles: async (callback) => {
